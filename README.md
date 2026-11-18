@@ -124,3 +124,32 @@ For production, mount a dedicated persistent volume for `haven_history.sqlite3`,
 ## Future scope
 
 Add authenticated multi-user workspaces, a local-market dataset with licensed provenance, currency-aware valuation, temporal/geographic validation, cross-validation and calibration, SHAP/permutation local explanations, richer charts, and complete multi-property PDF reports.
+
+## Docker Deployment
+
+### Docker Configuration
+- Base image: `python:3.11-slim`
+- Runtime dependencies: `requirements-serve.txt`
+- Docker image: `haven-house-price:latest`
+- Image content size: 177 MB
+- Docker Desktop displayed size: 767.24 MB
+
+### Build Docker Image
+```powershell
+docker build -t haven-house-price .
+```
+
+### Run Container
+```powershell
+docker run -d --name haven-app -p 8000:8000 --restart unless-stopped haven-house-price
+```
+
+### Access Application
+- Application: http://localhost:8000
+- API Documentation: http://localhost:8000/docs
+
+### Verify Container
+```powershell
+docker ps
+docker logs haven-app
+```
